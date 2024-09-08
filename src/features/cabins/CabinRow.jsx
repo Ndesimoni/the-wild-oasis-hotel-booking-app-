@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
+import { formatCurrency } from "../../utils/helpers";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteCabin } from "../../services/apiSettings";
 
 const TableRow = styled.div`
   display: grid;
@@ -38,3 +42,51 @@ const Discount = styled.div`
   font-weight: 500;
   color: var(--color-green-700);
 `;
+
+const CabinRow = ({ cabins }) => {
+  const {
+    name,
+    maxCapacity,
+    regularPrice,
+    discount,
+    image,
+    id: cabinId,
+  } = cabins;
+  // to create a refetch after deleting hook
+  const queryClient = useQueryClient();
+
+  // the return gotten from the useMutation
+  const { isLoading: isDeleting, mutate } = useMutation({
+    mutationFn: deleteCabin,
+    // when the delete is Successful
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        // this is to know which queryKey to delete from
+        queryKey: ["cabins"],
+      });
+    },
+    // error message
+    onError: (error) => alert(error.message || error),
+  });
+
+  return (
+    <TableRow role="row">
+      <Img src={image} />
+      <Cabin> {name}</Cabin>
+      <div> fits up to {maxCapacity} guests</div>
+      <Price>{formatCurrency(regularPrice)}</Price>
+      <Discount>{formatCurrency(discount)} </Discount>
+
+      {/* mutate is use to delete the matching cabin */}
+      <button onClick={() => mutate(cabinId)}>
+        {isDeleting ? "deleting" : "delete"}
+      </button>
+    </TableRow>
+  );
+};
+
+CabinRow.propTypes = {
+  cabins: PropTypes.object,
+};
+
+export default CabinRow;

@@ -1,4 +1,11 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+
+import { IoHomeOutline } from "react-icons/io5";
+import { GiNotebook } from "react-icons/gi";
+import { GiWoodCabin } from "react-icons/gi";
+import { FaUsersCog } from "react-icons/fa";
+import { CiSettings } from "react-icons/ci";
 
 const NavList = styled.ul`
   display: flex;
@@ -6,7 +13,7 @@ const NavList = styled.ul`
   gap: 0.8rem;
 `;
 
-const Link = styled.a`
+const StyleNavLink = styled(NavLink)`
   &:link,
   &:visited {
     display: flex;
@@ -44,3 +51,47 @@ const Link = styled.a`
     color: var(--color-brand-600);
   }
 `;
+
+const MainNav = () => {
+  return (
+    <NavList>
+      <li>
+        <StyleNavLink to="/dashboard">
+          {" "}
+          <IoHomeOutline />
+          <span>Home</span>
+        </StyleNavLink>
+      </li>
+
+      <li>
+        <StyleNavLink to="/bookings">
+          <GiNotebook />
+          <span>Booking</span>
+        </StyleNavLink>
+      </li>
+
+      <li>
+        <StyleNavLink to="/cabins">
+          <GiWoodCabin />
+          <span>Cabins</span>
+        </StyleNavLink>
+      </li>
+
+      <li>
+        <StyleNavLink to="/users">
+          <FaUsersCog />
+          <span>Users</span>
+        </StyleNavLink>
+      </li>
+
+      <li>
+        <StyleNavLink to="/settings">
+          <CiSettings />
+          <span>Settings</span>
+        </StyleNavLink>
+      </li>
+    </NavList>
+  );
+};
+
+export default MainNav;

@@ -25,3 +25,13 @@ export async function updateSetting(newSetting) {
   }
   return data;
 }
+
+export async function deleteCabin(id) {
+  const { data, error } = await supabase.from("cabins").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Settings could not be updated");
+  }
+  return data;
+}
