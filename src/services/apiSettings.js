@@ -21,7 +21,17 @@ export async function updateSetting(newSetting) {
 
   if (error) {
     console.error(error);
-    throw new Error("Settings could not be updated");
+    throw new Error("cabin could not be updated");
+  }
+  return data;
+}
+
+export async function createCabin(newCabin) {
+  const { data, error } = await supabase.from("bookings").insert([newCabin]);
+
+  if (error) {
+    console.error(error);
+    throw new Error("cabin could not be created");
   }
   return data;
 }
@@ -31,7 +41,7 @@ export async function deleteCabin(id) {
 
   if (error) {
     console.error(error);
-    throw new Error("Settings could not be updated");
+    throw new Error("cabin could not be deleted");
   }
   return data;
 }
