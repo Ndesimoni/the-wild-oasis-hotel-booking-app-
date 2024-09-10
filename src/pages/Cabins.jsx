@@ -18,6 +18,7 @@ function Cabins() {
 
       <Row>
         <CabinTable />
+
         <Button onClick={() => setShowCabin((show) => !show)}>
           Add new Cabin{" "}
         </Button>
