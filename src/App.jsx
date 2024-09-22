@@ -44,6 +44,7 @@ const App = () => {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
+
       <Toaster
         position="top center"
         gutter={12}
