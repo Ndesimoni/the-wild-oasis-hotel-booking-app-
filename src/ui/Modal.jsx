@@ -70,7 +70,6 @@ const Modal = ({ children }) => {
 
 function Open({ children, opens: openWindowName }) {
   const { open } = useContext(ModelContext);
-
   return cloneElement(children, { onClick: () => open(openWindowName) });
 }
 
@@ -84,7 +83,7 @@ const Window = ({ children, name }) => {
         <Button onClick={close}>
           <HiXMark />
         </Button>
-        <div>{children}</div>;
+        <div>{cloneElement(children, { onClosModal: close })}</div>;
       </StyledModal>
     </Overlay>,
     document.body
