@@ -70,10 +70,13 @@ const Modal = ({ children }) => {
 
 function Open({ children, opens: openWindowName }) {
   const { open } = useContext(ModelContext);
-  return cloneElement(children, { onClick: () => open(openWindowName) });
+  return cloneElement(children, {
+    onClick: () => open(openWindowName, console.log(openWindowName)),
+  });
 }
 
 const Window = ({ children, name }) => {
+  console.log(name);
   const { openName, close } = useContext(ModelContext);
   if (name !== openName) return null;
 
@@ -94,16 +97,16 @@ Modal.Open = Open;
 Modal.Window = Window;
 
 Modal.propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.any,
 };
 
 Open.propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.any,
   openWindowName: PropTypes.any,
 };
 
 Window.propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.any,
   name: PropTypes.any,
 };
 
