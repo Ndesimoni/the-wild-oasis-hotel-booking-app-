@@ -2,6 +2,7 @@ import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
 import useCabin from "./useCabins";
 import Table from "../../ui/Table";
+import Menus from "../../ui/Menus";
 
 // const TableHeader = styled.header`
 //   display: grid;
@@ -24,21 +25,23 @@ const CabinTable = () => {
   if (isLoading) return <Spinner />;
 
   return (
-    <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
-      <Table.Header>
-        <div></div>
-        <div>CABIN</div>
-        <div> CAPACITY</div>
-        <div>PRICE</div>
-        <div>DISCOUNT</div>
-        <div></div>
-      </Table.Header>
+    <Menus>
+      <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
+        <Table.Header>
+          <div></div>
+          <div>CABIN</div>
+          <div> CAPACITY</div>
+          <div>PRICE</div>
+          <div>DISCOUNT</div>
+          <div></div>
+        </Table.Header>
 
-      <Table.Body
-        data={cabins}
-        render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />}
-      />
-    </Table>
+        <Table.Body
+          data={cabins}
+          render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />}
+        />
+      </Table>
+    </Menus>
   );
 };
 

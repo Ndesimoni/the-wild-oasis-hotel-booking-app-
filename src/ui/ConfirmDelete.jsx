@@ -47,10 +47,10 @@ function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
 }
 
 ConfirmDelete.propTypes = {
-  resourceName: PropTypes.any.isRequired,
-  disabled: PropTypes.any.isRequired,
-  onConfirm: PropTypes.any.isRequired,
-  onCloseModal: PropTypes.any.isRequired,
+  resourceName: PropTypes.any,
+  disabled: PropTypes.any,
+  onConfirm: PropTypes.any,
+  onCloseModal: PropTypes.any,
 };
 
 export default ConfirmDelete;
